@@ -1,14 +1,14 @@
 'use strict';
 
-const Person = function(firstName, birthYear) {
+/*const Person = function(firstName, birthYear) {
 //   console.log(this);//this returns the constructor
 
 this.firstName = firstName;
 this.birthYear = birthYear;
 
-// this.calcAge = function() {
-//     console.log(2037-this.birthYear);
-// }
+this.calcAge = function() {
+    console.log(2037-this.birthYear);
+}
 }
 
 
@@ -87,3 +87,137 @@ car1.accelerate();
 car2.accelerate();
 car1.brake();
 car2.brake();
+
+
+//class expression
+// const PersonCl = class {
+
+// }
+
+//decleration
+class PersonCl {
+        constructor(fullName, birthYear){
+           this.fullName = fullName;
+           this.birthYear = birthYear;
+        }
+
+        calcAge() {
+           console.log(2037-this.birthYear);
+        }
+
+        get age() {
+                return 2037-this.birthYear;
+        }
+
+        set fullName(name){
+           if(name.includes(' ')){
+                this._fullName = name;
+           }
+           else{
+              alert(`${name} is not a full name`);  
+           }
+        }
+
+        greet() {
+                console.log(`Hey ${this.firstName}`);  
+             }
+}
+
+const jessica = new PersonCl('Jessica Davis', 1996);
+
+console.log(jessica.__proto__.hasOwnProperty('calcAge'));
+jessica.calcAge();
+
+jessica.greet();
+
+const account = {
+        owner: 'Jonas',
+        movements: [200,500,120,300],
+
+        get latest() {
+            return this.movements.slice(-1).pop();    
+        },
+
+        set latest(mov){
+          this.movements.push(mov);
+        },
+
+        get fullName() {
+         return this._fullName;
+        }
+}
+
+console.log(account.latest);
+
+account.latest= 50;
+
+console.log(jessica.age);
+console.log(jessica); */
+
+
+/*class PersonCl {
+        constructor(firstName, birthYear) {
+                //   console.log(this);//this returns the constructor
+                this.firstName = firstName;
+                this.birthYear = birthYear;
+        }
+
+                calcAge(){
+                        console.log(2037 - this.birthYear);
+                };
+
+                greet() {
+                        console.log(`Hey ${this.firstName}`);  
+                }
+
+                get age(){
+                        return 2037 -this.birthYear;
+                }
+
+                set fullName(name){
+                        if(name.includes(' ')){
+                                this._fullName = name;
+                           }
+                           else{
+                              alert(`${name} is not a full name`);  
+                           } 
+                }
+
+                get fullName() {
+                        return this._fullName;
+                       }
+
+                static hey() {
+                        console.log(`Hey there 👋🏻`);
+                }       
+        }   
+
+class StudentCl extends PersonCl{
+ constructor(fullName, birthYear, course)
+}*/
+
+
+const Person = function (firstName, birthYear) {
+        this.firstName = firstName;
+        this.birthYear = birthYear;
+};
+
+Person.prototype.calcAge = function () {
+        console.log(2037 - this.birthYear);
+}
+
+const Student = function(firstName, birthYear,course){
+        Person.call(this,firstName,birthYear);
+        this.course = course;
+};
+
+Student.prototype.introduce = function(){
+    console.log(`My name is ${this.firstName} and I study ${this.course}`);
+}
+
+
+const mike = new Student('Mike', 2020, 'Computer Science');
+
+console.log(mike);
+
+mike.introduce();
